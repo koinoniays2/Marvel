@@ -34,7 +34,7 @@ const Card = ({
                 onClick={() => setSelected(position)}
                 className="absolute top-0 left-0 w-full min-h-full p-8 flex flex-col justify-center items-center">
                     <div className="absolute top-0 left-0 w-full h-full flex justify-center">
-                        <img className="w-full h-full object-cover object-center" src={image} alt={title} />
+                        <img className="w-full h-full object-fill object-center" src={image} alt={title} />
                     </div>
                     <div className="absolute max-w-7xl w-full h-full flex flex-col text-white space-y-4 justify-center">
                         <h1 className="text-4xl font-bold uppercase">echo comics</h1>

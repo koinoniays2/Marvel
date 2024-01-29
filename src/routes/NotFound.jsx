@@ -18,8 +18,8 @@ export default function NotFound() {
           </div>
           {/* 오른쪽 */}
           <div className="w-1/2 h-full flex justify-center items-end overflow-hidden">
-            <img className="animate-scared"
-             src="https://www.pngkit.com/png/full/17-171034_marvel-com-blue-iron-man-comic.png" alt="not_image" />
+            <img className="animate-scared h-full"
+             src="https://media1.tenor.com/m/HMa7PrYc69AAAAAC/deadpool-cable.gif" alt="not_image" />
           </div>
         </div>
       </div>
