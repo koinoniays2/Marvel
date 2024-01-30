@@ -16,7 +16,8 @@ const Listitem = ({item, CARD_WIDTH, CARD_HEIGHT, MARGIN}) => (
         </div>
         {/* 2. 타이틀 */}
         <div>
-            <h2 className="text-sm font-semibold duration-300 group-hover:text-red-600">{item.title.substr(0, 20)}</h2>
+            <h2 className="text-sm font-semibold duration-300 group-hover:text-red-600">
+              {item.title ? item?.title.substr(0, 20) : item?.name.substr(0, 20)}</h2>
             <h4 className="text-sm text-gray-500">{item.modified.substr(0,10)}</h4>
         </div>
     </div>

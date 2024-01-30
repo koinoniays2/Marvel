@@ -2,7 +2,7 @@ import React from "react";
 import TitleRotate from "./TitleRotate";
 import Button from "./Button";
 {/* 코믹스 섹션 */}
-export default function TitleImageBox({imgUrl}) {
+export default function TitleImageBox({imgUrl, mainTitle, subTitle, description, btnTxt}) {
   return (
     <section className="w-full">
       {/* 이미지로 된 타이틀 */}
@@ -30,13 +30,13 @@ export default function TitleImageBox({imgUrl}) {
           <div className="max-w-7xl w-full h-full flex flex-col justify-center text-white space-y-4">
             <div className="space-y-2">
               {/* 사선으로 된 제목 */}
-              <TitleRotate text="available now" />
+              <TitleRotate text={mainTitle} />
               <h1 className="text-4xl font-bold uppercase">
-                new on marvel unlimited
+                {subTitle}
               </h1>
-              <p>Read these plus 30,000+ digital comics for $9.99 a month!</p>
+              <p>{description}</p>
             </div>
-            <Button outline="outline" text="get involved unlimited" />
+            <Button outline="outline" text={btnTxt} />
           </div>
         </div>
       </div>

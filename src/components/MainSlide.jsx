@@ -98,7 +98,7 @@ export default function MainSlide() {
     <section className="w-full flex flex-col overflow-hidden">
                 <NoticeDisney />
                     {/* 그림영역 */}
-                    <div className="relative w-full h-[450px]">
+                    <div className="relative w-full h-[560px]">
                         {
                             testimonials.map((item, index) => (
                                 // 5개중의 1개 아이템 
