@@ -10,6 +10,7 @@ const Card = ({logoImage, image, title, link1, link2, btn1, btn2, desc, selected
   const offset = position <= selected ? 0 : 100;
   return (
     <div className="w-full h-full flex justify-center">
+      {/* Framer Motion을 사용한 이미지 이동 효과 적용 */}
       <motion.div className="absolute top-0 left-0 w-full min-h-full p-8 flex flex-col justify-center items-center"
         initial={false}
         style={{
@@ -24,6 +25,7 @@ const Card = ({logoImage, image, title, link1, link2, btn1, btn2, desc, selected
         }}
         onClick={() => setSelected(position)}>
         <div className="absolute top-0 left-0 w-full h-full flex justify-center">
+          <div className="absolute top-0 left-0 w-full h-full bg-black/70"></div>
           {/* 백그라운드 이미지 */}
           <img className="w-full h-full object-cover object-center" src={image} alt={title} />
           {/* 텍스트 */}
@@ -51,10 +53,11 @@ const Card = ({logoImage, image, title, link1, link2, btn1, btn2, desc, selected
 const SelectedBtns = ({ numTracks, setSelected, selected }) => {
   return (
     <div className="flex space-x-2">
+      {/* testimonials 배열을 순회하며 각각의 버튼 렌더링 */}
       {numTracks.map((item, index, array) => (
         <button
-          onClick={() => setSelected(index)}
           key={index}
+          onClick={() => setSelected(index)}
           className="h-2 w-full bg-slate-300 relative"
         >
           {selected === index ? (
@@ -70,11 +73,12 @@ const SelectedBtns = ({ numTracks, setSelected, selected }) => {
                 duration: 5,
                 ease: "easeOut",
               }}
-              onAnimationComplete={() => {
+              onAnimationComplete={() => { // 애니메이션이 완료될 때 다음 선택된 버튼으로 변경
                 setSelected(selected === array.length - 1 ? 0 : selected + 1);
               }}
             ></motion.span>
           ) : (
+            // 선택되지 않은 버튼인 경우
             <span
               className="absolute top-0 left-0 bg-red-600"
               style={{
@@ -108,7 +112,7 @@ export default function MainSlide({ testimonials }) {
             {...item}
             selected={selected}
             setSelected={setSelected}
-            position={index}
+            position={index} // 각각의 아이템에 z-index를 위해
           />
         ))}
       </div>
