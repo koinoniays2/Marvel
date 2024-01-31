@@ -11,13 +11,11 @@ import Button from "../components/Button";
 import { testimonials } from "../lib/menus";
 
 export default function MainPage() {
-  // Comics Fetch
-  const { data, isLoading } = useQuery(["getComics"], apiGetComics);
-  //console.log(isLoading, data); // 로딩상태(true, false), 데이터
-  // ["쿼리 키"], 함수(데이터를 구분하기 위해)
+  // Comics Fetch {data-불러온 데이터, isLoading-로딩상태(true, false)}
+  const {data, isLoading} = useQuery(["getComics"], apiGetComics); // ["쿼리 키"], 함수(데이터를 구분하기 위해)
+  //console.log(isLoading, data);
   let lists; // fetch 요청한 배열을 받기 위한 변수
-  // 데이터가 불러와진 상태(false)가 됐을 때 데이터 담기
-  if(!isLoading) {
+  if(!isLoading) { // 데이터가 불러와진 상태(false)가 됐을 때 데이터 담기
     lists = data?.data.results;
   }
 

@@ -1,29 +1,16 @@
 import React, { useState } from "react";
 import NoticeDisney from "./NoticeDisney";
-import { testimonials } from "../lib/menus";
 import Facebook from "../assets/Facebook";
 import Insta from "../assets/Insta";
 import Pinterest from "../assets/Pinterest";
 import { motion } from "framer-motion";
 import Button from "./Button";
 
-const Card = ({
-  logoImage,
-  image,
-  title,
-  link1,
-  link2,
-  btn1,
-  btn2,
-  desc,
-  selected,
-  setSelected,
-  position,
-}) => {
+const Card = ({logoImage, image, title, link1, link2, btn1, btn2, desc, selected, setSelected, position}) => {
   const offset = position <= selected ? 0 : 100;
   return (
     <div className="w-full h-full flex justify-center">
-      <motion.div
+      <motion.div className="absolute top-0 left-0 w-full min-h-full p-8 flex flex-col justify-center items-center"
         initial={false}
         style={{
           zIndex: position,
@@ -32,28 +19,18 @@ const Card = ({
           x: `${offset}%`,
         }}
         transition={{
-          duration: 0.25,
+          duration: 0.5,
           ease: "easeOut",
         }}
-        onClick={() => setSelected(position)}
-        className="absolute top-0 left-0 w-full min-h-full p-8 flex flex-col justify-center items-center"
-      >
+        onClick={() => setSelected(position)}>
         <div className="absolute top-0 left-0 w-full h-full flex justify-center">
           {/* 백그라운드 이미지 */}
-          <img
-            className="w-full h-full object-cover object-center"
-            src={image}
-            alt={title}
-          />
-
-          <div className="absolute max-w-7xl w-full h-full flex flex-col text-white space-y-4 justify-center">
+          <img className="w-full h-full object-cover object-center" src={image} alt={title} />
+          {/* 텍스트 */}
+          <div className="absolute max-w-7xl w-full h-full flex flex-col justify-center text-white space-y-4">
             {logoImage && (
               <div className="h-16">
-                <img
-                  src={logoImage}
-                  alt="slide_logo"
-                  className="h-full object-cover"
-                />
+                <img src={logoImage} alt="slide_logo" className="h-full object-cover" />
               </div>
             )}
             <h1 className="text-4xl font-bold uppercase">{title && title}</h1>
