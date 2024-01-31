@@ -8,6 +8,7 @@ import TitleRotate from "../components/TitleRotate";
 import Layout7 from "../components/Layout7";
 import BounceLoader from "react-spinners/BounceLoader"
 import Button from "../components/Button";
+import { testimonials } from "../lib/menus";
 
 export default function MainPage() {
   // Comics Fetch
@@ -38,7 +39,7 @@ export default function MainPage() {
     <>
       <Layout>
         {/* 메인 슬라이드 컴포넌트 */}
-        <MainSlide />
+        <MainSlide testimonials={testimonials}/>
         {/* 코믹스 섹션 */}
         <TitleImageBox imgUrl="https://cdn.marvel.com/content/1x/20240124-newtomu_base_set_dsk.jpg"
         mainTitle="available now"

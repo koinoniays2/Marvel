@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaSearch } from "react-icons/fa";
 import LogoLarge from "../assets/png/logo-large.png";
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -15,7 +16,7 @@ export default function Header() {
             </div>
             {/* 중앙 : 로고 */}
             <div className="absolute h-full top-0 left-1/2 -translate-x-1/2" >
-                <img className="h-full" src={LogoLarge} alt="logo_large" />
+                <Link to="/"><img className="h-full" src={LogoLarge} alt="logo_large" /></Link>
             </div>
             {/* 오른쪽 : 검색 */}
             <div className="flex items-center h-full px-4 border-l border-r border-gray-700 space-x-4">
@@ -35,8 +36,8 @@ export default function Header() {
     </section>
     <section className="w-full h-10 border border-gray-700 flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
         <p>NEWS</p>
-        <p>COMICS</p> 
-        <p>CHARACTERS</p>
+        <Link to="/comics"><p>COMICS</p></Link>
+        <Link to="/characters"><p>CHARACTERS</p></Link>
         <p>MOVIES</p>
         <p>TV SHOW</p>
         <p>GAMES</p>
