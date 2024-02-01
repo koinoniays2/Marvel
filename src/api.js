@@ -34,3 +34,19 @@ export async function apiGetCharacters({queryKey}) { // MainPage에서 Feach요�
         console.log(error);     
     }
 }
+
+// [GET] Characters 디테일
+export async function apiGetCharacterDtail({queryKey}) { // MainPage에서 Feach요청 한 쿼리 키의 인자를 받아온다.
+    const id = queryKey[1].id;
+    // console.log(queryKey);
+    try {
+        return await fetch(`${BASE_URL}/characters/${id}?apikey=${API_KEY}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => res.json());
+    }catch(error) {
+        console.log(error);     
+    }
+}

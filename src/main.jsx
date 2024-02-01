@@ -7,6 +7,7 @@ import NotFound from './routes/NotFound.jsx'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import Characters from './routes/Characters.jsx'
 import Comics from './routes/Comics.jsx'
+import CharacterDetail from './routes/CharacterDetail.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: "comics",
         element: <Comics />
+      },
+      {
+        path: "characters/:id",
+        // 주소 뒤에 오는것을 id변수로 받는다
+        element: <CharacterDetail />
       }
     ]
   }

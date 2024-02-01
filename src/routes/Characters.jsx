@@ -4,6 +4,7 @@ import TitleRotate from '../components/TitleRotate'
 import { useQuery } from 'react-query'
 import { apiGetCharacters } from '../api'
 import { BounceLoader } from 'react-spinners'
+import { Link } from 'react-router-dom'
 // 서브페이지
 export default function Characters() {
   let characters;
@@ -34,21 +35,23 @@ export default function Characters() {
               <div className="grid grid-cols-6 gap-4">
                 {characters?.map((item, index) => (
                   <div key={index} className="h-[340px] cursor-pointer group">
-                    <div className="w-full h-full flex flex-col bg-red-500" style={{clipPath :"polygon(100% 0, 100% 85%, 85% 100%, 0 100%, 0 0)"}}>
-                      {/* 이미지 */}
-                      <div className="w-full h-[60%] overflow-hidden duration-300 group-hover:scale-110">
-                        <img className="w-full h-full object-cover" src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} alt="character image"/>
-                      </div>
-                      {/* 타이틀 */}
-                      <div className="relative w-full h-[40%] flex items-end">
-                        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between py-2 px-4 text-white">
-                          <h2 className="font-semibold">{item?.name}</h2>
-                          <p className="text-sm text-gray-300">{item?.description.substr(0, 10)}</p>
+                    <Link to={`/characters/${item.id}`}>
+                      <div className="w-full h-full flex flex-col bg-red-500" style={{clipPath :"polygon(100% 0, 100% 85%, 85% 100%, 0 100%, 0 0)"}}>
+                        {/* 이미지 */}
+                        <div className="w-full h-[60%] overflow-hidden duration-300 group-hover:scale-110">
+                          <img className="w-full h-full object-cover" src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} alt="character image"/>
                         </div>
-                        {/* 호버시 */}
-                        <div className="w-full h-[95%] duration-300 group-hover:h-0 bg-main-dark"></div>
+                        {/* 타이틀 */}
+                        <div className="relative w-full h-[40%] flex items-end">
+                          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between py-2 px-4 text-white">
+                            <h2 className="font-semibold">{item?.name}</h2>
+                            <p className="text-sm text-gray-300">{item?.description.substr(0, 10)}</p>
+                          </div>
+                          {/* 호버시 */}
+                          <div className="w-full h-[95%] duration-300 group-hover:h-0 bg-main-dark"></div>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>
