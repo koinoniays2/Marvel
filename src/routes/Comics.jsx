@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import { testimonials2 } from '../lib/menus'
 import { useQuery } from 'react-query'
 import { apiGetComics } from '../api'
+import { Link } from 'react-router-dom'
 
 export default function Comics() {
   const {data, isLoading} = useQuery(["getComics"], apiGetComics);
@@ -12,7 +13,7 @@ export default function Comics() {
   if(!isLoading) {
     comicsData = data?.data?.results;
   }
-  console.log(comicsData);
+  // console.log(comicsData);
   return (
     <>
     <Layout>
@@ -23,17 +24,20 @@ export default function Comics() {
               <div className="w-full grid grid-cols-6 gap-4 py-4">
               {
                 comicsData?.filter((item) => !item.thumbnail?.path.includes("image_not_available"))
-                .map((item, index) => (
-                  <div key={index} className="w-full group cursor-pointer">
-                    <img className="w-full h-72 object-center object-cover group-hover:-translate-y-3 duration-300" 
-                    src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} />
-                    <div className="p-2">
-                      <p className="truncate font-bold group-hover:text-red-500">{item?.title}</p>
-                      <p className="text-gray-500">{ item?.modified?.includes("-0001") ? "" :
-                      item?.modified?.substr(0, 10)
-                      }</p>
+                .map((item, index, array) => (
+                  // Link로 array를 state로 보내기(useLocation으로 받기)
+                  <Link to={`/comics/${item.id}`} state={{comics: array}}>
+                    <div key={index} className="w-full group cursor-pointer">
+                      <img className="w-full h-72 object-center object-cover group-hover:-translate-y-3 duration-300" 
+                      src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} />
+                      <div className="p-2">
+                        <p className="truncate font-bold group-hover:text-red-500">{item?.title}</p>
+                        <p className="text-gray-500">{ item?.modified?.includes("-0001") ? "" :
+                        item?.modified?.substr(0, 10)
+                        }</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 ))
               }
               </div>
