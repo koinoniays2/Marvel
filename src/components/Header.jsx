@@ -1,9 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import LogoLarge from "../assets/png/logo-large.png";
 import { Link } from 'react-router-dom';
+import NavLink from './NavLink';
+import { AnimatePresence, motion } from "framer-motion"
+import ComicsComponent from './menus/ComicsComponent';
 
+// 메뉴 호버
+const MENUS = [
+    {
+        text: "news",
+        href: "#",
+        component: ComicsComponent
+    },
+    {
+        text: "comics",
+        href: "/comics",
+        component: ""
+    },
+    {
+        text: "characters",
+        href: "/characters",
+        component: ""
+    },
+    {
+        text: "movies",
+        href: "/movies",
+        component: ""
+    },
+    {
+        text: "TV show",
+        href: "/tv",
+        component: ""
+    },
+    {
+        text: "games",
+        href: "/games",
+        component: ""
+    },
+    {
+        text: "videos",
+        href: "/videos",
+        component: ""
+    },
+    {
+        text: "more",
+        href: "/more",
+        component: ""
+    },
+]
 export default function Header() {
+    // 메뉴 호버상태 state
+    const [menuOpen, setMenuOpen] = useState(false);
+    console.log(menuOpen);
   return (
     <>
     {/* 헤더 */}
@@ -34,16 +83,27 @@ export default function Header() {
             </div>
         </div>
     </section>
-    <section className="w-full h-10 border border-gray-700 flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
-        <p>NEWS</p>
-        <Link to="/comics"><p>COMICS</p></Link>
-        <Link to="/characters"><p>CHARACTERS</p></Link>
-        <p>MOVIES</p>
-        <p>TV SHOW</p>
-        <p>GAMES</p>
-        <p>VIDEOS</p>
-        <p>MORE</p>
-    </section>
+    <div className="relative">
+        <section className=" w-full uppercase h-10 border border-gray-700 flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
+            {MENUS.map((item, index) => (
+                <NavLink key={index} href={item.href} component={item.component} menuOpen={menuOpen} setMenuOpen={setMenuOpen}>
+                    {item.text}
+                </NavLink>
+            ))}    
+        </section>
+        {
+            menuOpen && (
+                <AnimatePresence>
+                    <motion.div
+                    initial={{ opcity:0, y: -5}}
+                    animate={{opacity:1, y:0}}
+                    exit={{opacity:0, y:-5}} // exit를 넣으려면 <AnimatePresence>
+                    transition={{duration: 0.3, ease: "easeOut"}}
+                    className="w-full absolute top-10 left-0 right-0 h-80 bg-white z-30"></motion.div>
+                </AnimatePresence>
+            )
+        }
+    </div>
     </>
   )
 }

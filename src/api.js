@@ -1,3 +1,5 @@
+import qs from "qs";
+
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://gateway.marvel.com:443/v1/public";
 // [GET] Comics 리스트
@@ -48,5 +50,25 @@ export async function apiGetCharacterDtail({queryKey}) { // MainPage에서 Feach
         }).then((res) => res.json());
     }catch(error) {
         console.log(error);     
+    }
+}
+export async function apiPostGoogleMail(data) {
+    // console.log(data);
+    // const formData = new FormData();
+    // formData.append("name", data.name);
+    // formData.append("email", data.email);
+    // formData.append("message", data.message);
+    try {
+        // 결과값을 기다린 다음 리턴
+        return await fetch("https://script.google.com/macros/s/AKfycby7O9cp1nlcG7ABIEYIn0vAIm1Fzaz-CcY3ETp_2I5k4ZnPUVBuLezR986PcXIwGw9Z/exec", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/x-www-form-urlencoded" //이 형식으로 넘기겠다
+            },
+            // body: formData
+            body: qs.stringify(data) // 데이터 형식 바꿈
+        }).then((res) => res.json())
+    } catch(error) {
+        console.log(error);
     }
 }
