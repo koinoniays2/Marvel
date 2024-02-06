@@ -19,17 +19,17 @@ export default function Footer() {
                 </div>
                 {/* 2 */}
                 <div>
-                    <p>ABOUT MARVEL</p>
-                    <p>HELP/FAQS</p>
-                    <p>CAREERS</p>
-                    <p>INTERNSHIPS</p>
+                    <>ABOUT MARVEL</>
+                    <>HELP/FAQS</>
+                    <>CAREERS</>
+                    <>INTERNSHIPS</>
                 </div>
                 {/* 3 */}
                 <div>
-                    <p>ADVERTISING</p>
-                    <p>DISNEY+</p>
-                    <p>MARVELHQ.COM</p>
-                    <p>REDEEM DIGITAL</p>
+                    <>ADVERTISING</>
+                    <>DISNEY+</>
+                    <>MARVELHQ.COM</>
+                    <>REDEEM DIGITAL</>
                 </div>
             </div>
             {/* 2. ads */}
@@ -69,13 +69,13 @@ export default function Footer() {
             <div className="space-y-6">
                 <h3 className="uppercase">follow Marvel</h3>
                 <div className="grid grid-cols-4 grid-rows-2 gap-x-10 gap-y-6">
-                    <p><Facebook /></p>
-                    <p><Twitter /></p>
-                    <p><Insta /></p>
-                    <p><Tumb /></p>
-                    <p><Youtube /></p>
-                    <p><Snapchat /></p>
-                    <p><Pinterest /></p>
+                    <><Facebook /></>
+                    <><Twitter /></>
+                    <><Insta /></>
+                    <><Tumb /></>
+                    <><Youtube /></>
+                    <><Snapchat /></>
+                    <><Pinterest /></>
                 </div>
             </div>
         </div>

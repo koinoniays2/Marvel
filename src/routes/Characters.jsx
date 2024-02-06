@@ -32,7 +32,7 @@ export default function Characters() {
                 <div className="w-full flex justify-center py-16"><BounceLoader color="red" /></div>
               )
               :(
-              <div className="grid grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {characters?.map((item, index) => (
                   <div key={index} className="h-[340px] cursor-pointer group">
                     <Link to={`/characters/${item.id}`}>

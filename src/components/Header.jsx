@@ -6,6 +6,7 @@ import NavLink from './NavLink';
 import { AnimatePresence, motion } from "framer-motion"
 import ComicsComponent from './menus/ComicsComponent';
 import CharactersComponent from './menus/CharactersComponent';
+import MobileMenu from './MobileMenu';
 
 // 메뉴 호버
 const MENUS = [
@@ -61,18 +62,20 @@ export default function Header() {
     <section className="w-full flex justify-center h-12 bg-main-dark">
         <div className="relative max-w-7xl w-full h-full flex text-white justify-between items-center">
             {/* 왼쪽 : 회원 정보 */}
-            <div className="flex h-full items-center text-sm space-x-2 border-l border-r border-gray-700 px-4">
+            <div className="hidden md:flex h-full items-center text-sm space-x-2 border-l border-r border-gray-700 px-4">
                 <span className="inline-block bg-white w-5 h-5 rounded-full text-main-dark text-right italic font-bold pr-0.5">IN</span>
                 <span>CHOI</span>
             </div>
+            {/* 모바일 */}
+            <MobileMenu />
             {/* 중앙 : 로고 */}
             <div className="absolute h-full top-0 left-1/2 -translate-x-1/2" >
                 <Link to="/"><img className="h-full" src={LogoLarge} alt="logo_large" /></Link>
             </div>
             {/* 오른쪽 : 검색 */}
-            <div className="flex items-center h-full px-4 border-l border-r border-gray-700 space-x-4">
+            <div className="flex items-center h-full px-4 md:border-l border-none md:border-r border-gray-700 space-x-4">
                 {/* subscribe */}
-                <div className="h-full flex items-center space-x-2">
+                <div className="h-full hidden md:flex items-center space-x-2 ">
                     {/* 왼쪽 이미지 */}
                     <img className="h-[50%]" src="https://cdn.marvel.com/u/prod/marvel/images/mu/web/2021/icon-mu-shield.png" alt="이미지" />
                     <div className="text-center">
@@ -83,6 +86,7 @@ export default function Header() {
                 {/* 아이콘 */}
                 <div className="h-full flex items-center border-l pl-4 border-gray-700"><FaSearch /></div>
             </div>
+            
         </div>
     </section>
     <div className="relative">

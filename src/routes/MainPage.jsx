@@ -49,7 +49,7 @@ export default function MainPage() {
         <ListCarousel lists={lists}/>
         {/* 이벤트 */}
         <section className="w-full flex justify-center">
-          <div className="max-w-7xl w-full grid grid-cols-[7fr_3fr]">
+          <div className="max-w-7xl grid-cols-1 w-full grid md:grid-cols-[7fr_3fr]">
             {/* 1. 왼쪽 */}
             <div className="w-full h-full">
               {/* 타이틀 */}
@@ -58,7 +58,7 @@ export default function MainPage() {
               <div className="w-full">
                 {
                   events?.map((item, index) => (
-                    <div key={index} className="flex items-center border-b-2 py-4 space-x-6">
+                    <div key={index} className="flex flex-col md:flex-row items-center border-b-2 py-4 space-x-6">
                       <img src={`${item?.thumbnail.path}.${item?.thumbnail.extension}`} alt="thumbnail" 
                       className="w-72 object-cover"/>
                       <div className="flex flex-col justify-center space-y-4">
@@ -72,9 +72,9 @@ export default function MainPage() {
               </div>
             </div>
             {/* 2. 오른쪽 */}
-            <div className="w-full h-full ml-8">
+            <div className="w-full h-full ml-8 mb-16">
               <div className="relative flex flex-col justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="186" height="55" viewBox="0 0 186 55" fill="none" stroke="#C6A972" stroke-width="3"><path d="M21.4 1L1 21.4V717h264.6l20.4-20.4V1H21.4z" mask="url(#border-line_svg__mask-2)"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="186" height="55" viewBox="0 0 186 55" fill="none" stroke="#C6A972" strokeWidth="3"><path d="M21.4 1L1 21.4V717h264.6l20.4-20.4V1H21.4z" mask="url(#border-line_svg__mask-2)"></path></svg>
                 <div className="space-y-2 py-6
                 flex flex-col justify-center w-[80%]">
                   <h2 className="text-3xl font-bold text-center">THE HYPE BOX</h2>
@@ -93,7 +93,7 @@ export default function MainPage() {
                     </div>
                   ))
                 }
-                <svg className="absolute right-0 bottom-[-32px]" xmlns="http://www.w3.org/2000/svg" width="186" height="55" viewBox="0 0 186 55" fill="none" stroke="#C6A972" stroke-width="3" transform="scale(-1, -1)"><path d="M21.4 1L1 21.4V717h264.6l20.4-20.4V1H21.4z" mask="url(#border-line_svg__mask-2)"></path></svg>
+                <svg className="absolute right-0 bottom-[-32px]" xmlns="http://www.w3.org/2000/svg" width="186" height="55" viewBox="0 0 186 55" fill="none" stroke="#C6A972" strokeWidth="3" transform="scale(-1, -1)"><path d="M21.4 1L1 21.4V717h264.6l20.4-20.4V1H21.4z" mask="url(#border-line_svg__mask-2)"></path></svg>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function MainPage() {
           }
         {/* 마블 인사이더 */}
         <section className="w-full h-80 flex justify-center bg-black">
-          <div className="max-w-7xl w-full h-full grid grid-cols-[4fr_6fr]">
+          <div className="max-w-7xl w-full h-full grid grid-cols-1 md:grid-cols-[4fr_6fr]">
           {/* 왼쪽 */}
             <div className="w-full h-full ">
               <div className="w-full h-full">
