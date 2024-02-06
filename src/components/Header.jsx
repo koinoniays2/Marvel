@@ -5,23 +5,24 @@ import { Link } from 'react-router-dom';
 import NavLink from './NavLink';
 import { AnimatePresence, motion } from "framer-motion"
 import ComicsComponent from './menus/ComicsComponent';
+import CharactersComponent from './menus/CharactersComponent';
 
 // 메뉴 호버
 const MENUS = [
     {
         text: "news",
         href: "#",
-        component: ComicsComponent
+        component: ""
     },
     {
         text: "comics",
         href: "/comics",
-        component: ""
+        component: ComicsComponent
     },
     {
         text: "characters",
         href: "/characters",
-        component: ""
+        component: CharactersComponent
     },
     {
         text: "movies",
@@ -52,7 +53,8 @@ const MENUS = [
 export default function Header() {
     // 메뉴 호버상태 state
     const [menuOpen, setMenuOpen] = useState(false);
-    console.log(menuOpen);
+    // 호버했을 때 실어주기
+    const [menuContent, setMenuContent] = useState();
   return (
     <>
     {/* 헤더 */}
@@ -86,20 +88,27 @@ export default function Header() {
     <div className="relative">
         <section className=" w-full uppercase h-10 border border-gray-700 flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
             {MENUS.map((item, index) => (
-                <NavLink key={index} href={item.href} component={item.component} menuOpen={menuOpen} setMenuOpen={setMenuOpen}>
+                <NavLink key={index} href={item.href} component={item.component} menuOpen={menuOpen} setMenuOpen={setMenuOpen}
+                setMenuContent={setMenuContent} style={{ pointerEvents: "none" }}>
                     {item.text}
                 </NavLink>
             ))}    
         </section>
         {
-            menuOpen && (
+            menuOpen && menuContent && (
                 <AnimatePresence>
                     <motion.div
+                    // 메뉴에 마우스 올렸을때 안사라지게 하기위해
+                    onMouseEnter={() => setMenuOpen(true)} onMouseLeave={() => setMenuOpen(false)}
                     initial={{ opcity:0, y: -5}}
                     animate={{opacity:1, y:0}}
                     exit={{opacity:0, y:-5}} // exit를 넣으려면 <AnimatePresence>
                     transition={{duration: 0.3, ease: "easeOut"}}
-                    className="w-full absolute top-10 left-0 right-0 h-80 bg-white z-30"></motion.div>
+                    className="w-full absolute top-10 left-0 right-0 bg-white z-30">
+                        {/* 메뉴에 마우스 올렸을때 안사라지게 하기위해 만든 투명 div */}
+                        <div className="absolute -top-3 left-0 w-full h-10 bg-transparent" />
+                        {menuContent}
+                    </motion.div>
                 </AnimatePresence>
             )
         }
