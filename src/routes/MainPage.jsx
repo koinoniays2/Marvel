@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import Layout from "../components/Layout";
 import MainSlide from "../components/MainSlide";
 import TitleImageBox from "../components/TitleImageBox";
@@ -20,11 +20,34 @@ export default function MainPage() {
   }
 
   // Events Fetch
-  const {data:dataEvents, isLoading:isLoadingEvents} = useQuery(["getEvents"], apiGetEvents);
-  let events;
-  if(!isLoadingEvents) {
-    events = dataEvents?.data.results;
-  }
+  const {data:dataEvents, isLoading:isLoadingEvents, 
+    fetchNextPage, //fetchNextPage : 다음페이지를 불러옴(버튼온클릭)
+    hasNextPage, // hasNextPage: 다음페이지 여부(more버튼 히든)
+    isFetchingNextPage} // isFetchingNextPage: 다음페이지를 불러오는 중인지 판별(true, false)
+  // useInfiniteQuery: key, query function에 pageParam을 기본으로 제공해줌
+  = useInfiniteQuery(
+    ["getEvents"], // 쿼리키, 캐시에 참조하는 레퍼런스
+    ({pageParam = 0}) => apiGetEvents({pageParam}), // 현재 어떤 페이지에 있는지 확인할 수 있는 파라미터(0이 없으면(기본값이 없으면) undefined)
+    // api 요청할 때 기본값으로 넣어서 사용 가능
+    {
+    getNextPageParam:(lastPage, allPages) => { // 다음페이지(새 데이터)를 불러올 때 마지막 페이지와 전체 페이지를 받아온다
+      console.log(lastPage);
+      console.log(allPages);
+      const limit = lastPage?.data?.limit;
+      const count = lastPage?.data?.count;
+      if(count === limit) {
+        const nextPage = allPages.length;
+        return nextPage;
+      }else {
+        return null;
+      }
+    } //리턴값을 pageParam으로 전달해줌
+  });
+  // let events;
+  // if(!isLoadingEvents) {
+  //   events = dataEvents?.data.results;
+  // }
+  console.log(dataEvents);
 
   // Characters Fetch
   const {data:dataCharacters, isLoading:isLoadingCharacters} = useQuery(["getCharacters", { limit: 10 }], apiGetCharacters); //api.js로 limit 값 보내기
@@ -56,20 +79,26 @@ export default function MainPage() {
               <TitleRotate text="The Events" />
               {/* 이벤트 API에서 불러오기 */}
               <div className="w-full">
-                {
-                  events?.map((item, index) => (
-                    <div key={index} className="flex flex-col md:flex-row items-center border-b-2 py-4 space-x-6">
-                      <img src={`${item?.thumbnail.path}.${item?.thumbnail.extension}`} alt="thumbnail" 
-                      className="w-72 object-cover"/>
-                      <div className="flex flex-col justify-center space-y-4">
-                        <h2 className="text-xl font-semibold">{item?.title}</h2>
-                        <p>{item?.description}</p>
-                        <p className="text-gray-500">{item.start?.substr(0, 10)}</p>
-                      </div>
+              { dataEvents?.pages.map((page) => 
+                page?.data.results.map((item, index) => (
+                  <div key={index} className="flex flex-col md:flex-row items-center border-b-2 py-4 space-x-6">
+                    <img src={`${item?.thumbnail.path}.${item?.thumbnail.extension}`} alt="thumbnail" 
+                    className="w-72 object-cover"/>
+                    <div className="flex flex-col justify-center space-y-4">
+                      <h2 className="text-xl font-semibold">{item?.title}</h2>
+                      <p>{item?.description}</p>
+                      <p className="text-gray-500">{item.start?.substr(0, 10)}</p>
                     </div>
-                  ))
-                }
+                  </div>
+                ))
+              )}
               </div>
+              {
+                hasNextPage &&
+                <div className="w-full flex justify-center pb-8 pt-4">
+                  <Button text="load more"onClick={() => fetchNextPage()} isFetching={isFetchingNextPage} />
+                </div>
+              }
             </div>
             {/* 2. 오른쪽 */}
             <div className="w-full h-full ml-8 mb-16">
@@ -81,7 +110,8 @@ export default function MainPage() {
                   <p className="text-sm text-center">Can’t-miss news and updates from across the Marvel Universe</p>
                 </div>
                 {
-                  events?.map((item, index) => (
+                  dataEvents?.pages.map((page) => 
+                  page?.data.results?.map((item, index) => (
                     <div key={index} className="flex items-center py-4 space-x-6">
                       <img src={`${item?.thumbnail.path}.${item?.thumbnail.extension}`} alt="thumbnail" 
                       className="w-24 object-cover"/>
@@ -92,7 +122,7 @@ export default function MainPage() {
                       </div>
                     </div>
                   ))
-                }
+                )}
                 <svg className="absolute right-0 bottom-[-32px]" xmlns="http://www.w3.org/2000/svg" width="186" height="55" viewBox="0 0 186 55" fill="none" stroke="#C6A972" strokeWidth="3" transform="scale(-1, -1)"><path d="M21.4 1L1 21.4V717h264.6l20.4-20.4V1H21.4z" mask="url(#border-line_svg__mask-2)"></path></svg>
               </div>
             </div>

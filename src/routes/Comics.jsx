@@ -26,8 +26,8 @@ export default function Comics() {
                 comicsData?.filter((item) => !item.thumbnail?.path.includes("image_not_available"))
                 .map((item, index, array) => (
                   // Link로 array를 state로 보내기(useLocation으로 받기)
-                  <Link to={`/comics/${item.id}`} state={{comics: array}}>
-                    <div key={index} className="w-full group cursor-pointer">
+                  <Link key={index} to={`/comics/${item.id}`} state={{comics: array}}>
+                    <div className="w-full group cursor-pointer">
                       <img className="w-full h-72 object-center object-cover group-hover:-translate-y-3 duration-300" 
                       src={`${item.thumbnail?.path}.${item.thumbnail?.extension}`} />
                       <div className="p-2">
