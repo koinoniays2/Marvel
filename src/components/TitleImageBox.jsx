@@ -28,15 +28,17 @@ export default function TitleImageBox({imgUrl, mainTitle, subTitle, description,
         {/* 절대포지션 부모요소 전체 선택 */}
         <div className="absolute top-0 left-0 w-full h-full flex justify-center">
           <div className="max-w-7xl w-full h-full flex flex-col justify-center text-white space-y-4">
-            <div className="space-y-2">
+            <div className="p-5 space-y-2">
               {/* 사선으로 된 제목 */}
               <TitleRotate text={mainTitle} />
-              <h1 className="text-4xl font-bold uppercase">
+              <h1 className="text-3xl md:text-4xl font-bold uppercase">
                 {subTitle}
               </h1>
-              <p>{description}</p>
+              <p className="truncate md:text-lg">{description}</p>
             </div>
-            <Button outline="outline" text={btnTxt} />
+            <div className="pl-5">
+              <Button outline="outline" text={btnTxt} />
+            </div>
           </div>
         </div>
       </div>

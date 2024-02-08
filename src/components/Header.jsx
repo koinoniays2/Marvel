@@ -73,7 +73,7 @@ export default function Header() {
                 <Link to="/"><img className="h-full" src={LogoLarge} alt="logo_large" /></Link>
             </div>
             {/* 오른쪽 : 검색 */}
-            <div className="flex items-center h-full px-4 md:border-l border-none md:border-r border-gray-700 space-x-4">
+            <div className="flex items-center h-full px-4 md:border-l md:border-r border-gray-700 space-x-4">
                 {/* subscribe */}
                 <div className="h-full hidden md:flex items-center space-x-2 ">
                     {/* 왼쪽 이미지 */}
@@ -84,13 +84,13 @@ export default function Header() {
                     </div>
                 </div>
                 {/* 아이콘 */}
-                <div className="h-full flex items-center border-l pl-4 border-gray-700"><FaSearch /></div>
+                <div className="h-full flex items-center md:border-l pl-4 border-gray-700"><FaSearch /></div>
             </div>
             
         </div>
     </section>
     <div className="relative">
-        <section className=" w-full uppercase h-10 border border-gray-700 hidden md:flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
+        <section className=" w-full uppercase h-10 border-t border-b border-gray-700 hidden md:flex justify-center items-center bg-main-dark text-white space-x-8 text-sm">
             {MENUS.map((item, index) => (
                 <NavLink key={index} href={item.href} component={item.component} menuOpen={menuOpen} setMenuOpen={setMenuOpen}
                 setMenuContent={setMenuContent} style={{ pointerEvents: "none" }}>

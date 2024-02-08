@@ -10,9 +10,9 @@ export default function Button({link, text, onClick, isFetching}) {
       disabled={isFetching}
       onClick={onClick}
       style={{
-        clipPath: "polygon(20% 0, 100% 0, 100% 60%, 80% 100%, 0 100%, 0 40%)"
+        clipPath: "polygon(10% 0, 100% 0, 100% 65%, 90% 100%, 0 100%, 0 35%)"
       }}
-      className="uppercase px-10 py-4 bg-red-600 text-white font-bold duration-500 hover:bg-red-700">
+      className="uppercase px-6 py-3 text-white font-bold duration-500 bg-red-600 hover:bg-red-700">
       {isFetching ? (
         <div>
           <BounceLoader color="white" />

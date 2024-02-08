@@ -16,14 +16,12 @@ export const testimonials = [
       link1: "https://www.daum.net"
   }, 
   {
-      image: "https://cdn.marvel.com/content/1x/watchers9days_com_mas_dsk_01.jpg",
-      logoImage: "https://cdn.marvel.com/content/1x/whatifs2_log_eye_02.png",
-      title: "The Watcher's Nine Days of What If...?",
-      desc: "Check back each day at 9am PST What If…? Now streaming on Disney+.",
-      btn1: "UNLOCK NOW", 
+      image: "https://cdn.marvel.com/content/1x/20240130-blacksuit-sm2explained_com_mas_dsk_00.jpg",
+      logoImage: "https://cdn.marvel.com/content/1x/20231001-log_eye-900x500.png",
+      title: "What is the Black Suit (Peter Parker)?",
+      desc: "Read on for everything you need to know about Peter Parker's Black Suit before playing 'Marvel's Spider-Man 2'!",
+      btn1: "Read More", 
       link1: "https://www.daum.net", 
-      btn2: "Stream on Disney+", 
-      link2: "https://www.daum.net"
   }, 
   {
       image: "https://cdn.marvel.com/content/1x/echo_mu_com_mas_dsk_01.jpg",
