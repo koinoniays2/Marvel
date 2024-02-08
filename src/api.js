@@ -1,7 +1,27 @@
 import qs from "qs";
+import xml2js from "react-native-xml2js";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://gateway.marvel.com:443/v1/public";
+
+export async function apiGetMunhwa() {
+    try{
+        let data;
+        const xmlData = await fetch("http://www.cha.go.kr/cha/SearchKindOpenapiList.do")
+        .then(res => res.text());
+        // console.log(xmlData);
+        xml2js.parseString(xmlData, (err, result) => {
+            if(err !== null) {
+                console.log(err);
+                return // err 발생 시 아무것도 하지않음
+            }
+            data = result; // err발생 아닐 시 result를 data에 받기
+        });
+        return data; // 리턴
+    }catch(error) {
+        console.log(error);
+    }
+}
 // [GET] Comics 리스트
 export async function apiGetComics() {
     return await fetch(`${BASE_URL}/comics?apikey=${API_KEY}`, {
