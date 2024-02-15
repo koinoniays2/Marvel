@@ -11,6 +11,7 @@ import CharacterDetail from './routes/CharacterDetail.jsx'
 import ComicsDetail from './routes/ComicsDetail.jsx'
 import Email from './routes/Email.jsx'
 import Munhwa from './routes/Munhwa.jsx'
+import ExpressTest from './routes/ExpressTest.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "munhaw",
         element: <Munhwa />
+      },
+      {
+        path: "test",
+        element: <ExpressTest />
       }
     ]
   }
